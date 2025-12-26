@@ -1,0 +1,699 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>PROJECT BUILD</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<meta name="color-scheme" content="light only" />
+		<meta name="description" content="BUILDING AND UPLIFTING INDIVIDUALS THROUGH LEARNING AND DEVELOPMENT" />
+		<meta property="og:site_name" content="PROJECT BUILD" />
+		<meta property="og:title" content="PROJECT BUILD" />
+		<meta property="og:type" content="website" />
+		<meta property="og:description" content="BUILDING AND UPLIFTING INDIVIDUALS THROUGH LEARNING AND DEVELOPMENT" />
+		<meta name="theme-color" content="#000000" />
+		<link href="https://fonts.googleapis.com/css2?display=swap&family=Source+Sans+Pro:ital,wght@0,300;0,400;1,300;1,400&family=Raleway:ital,wght@0,600;0,700;0,900;1,600;1,700;1,900&family=Red+Hat+Display:ital,wght@0,600;0,900;1,600;1,900&family=Cairo:ital,wght@0,200;0,400;1,200;1,400&family=Caudex:ital,wght@0,400;0,700;1,400;1,700&family=Commissioner:ital,wght@0,400;0,700;1,400;1,700" rel="stylesheet" type="text/css" />
+		<link rel="icon" type="image/png" href="assets/images/favicon.png" />
+		<link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png" />
+		<link rel="stylesheet" href="assets/main.css" />
+		<script async src="//www.googletagmanager.com/gtag/js?id=G-7TJ327WH4T"></script>
+		<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-7TJ327WH4T', { 'send_page_view': false });</script>
+		<!-- qweoqwupeoiqwuewqe --><script>
+		/*************************************************
+		* 1) Debug Logging Helper
+		*************************************************/
+		function debugLog(msg) {
+		// Append a small message to the #debug-log overlay
+		const debugDiv = document.getElementById('debug-log');
+		if (debugDiv) {
+		const p = document.createElement('p');
+		p.style.margin = '0'; // minimal spacing
+		p.textContent = msg;
+		debugDiv.appendChild(p);
+		debugDiv.scrollTop = debugDiv.scrollHeight; // auto-scroll to bottom
+		}
+		}
+		
+		/*************************************************
+		* 2) Sections and Swipe Logic
+		*************************************************/
+		const sections = [
+		'#pbswfl',
+		'#about',
+		'#mentoring',
+		'#financial',
+		'#workforce',
+		'#contact',
+		];
+		
+		let currentIndex = 0;
+		let startX, startY;
+		
+		// Navigate using normal hash (which can cause extra space on #pbswfl),
+		// but we'll at least log everything to see what's happening:
+		function navigateToSection(index) {
+		const sectionId = sections[index];
+		if (sectionId) {
+		debugLog(`Navigating to ${sectionId}`);
+		window.location.hash = sectionId;
+		}
+		}
+		
+		// Check if user is at bottom of page
+		function isScrollAtBottom() {
+		return (window.innerHeight + window.pageYOffset) >= document.body.offsetHeight;
+		}
+		
+		// Check if user is at top of page
+		function isScrollAtTop() {
+		return window.pageYOffset <= 0;
+		}
+		
+		// On touchstart, record initial coords
+		document.addEventListener('touchstart', (e) => {
+		if (e.touches.length > 0) {
+		startX = e.touches[0].clientX;
+		startY = e.touches[0].clientY;
+		debugLog(`touchstart: X=${startX}, Y=${startY}`);
+		}
+		});
+		
+		// On touchend, figure out swipe direction
+		document.addEventListener('touchend', (e) => {
+		if (typeof startX === 'undefined' || typeof startY === 'undefined') {
+		// If we never set start coords, no swipe can be calculated
+		return;
+		}
+		
+		if (e.changedTouches.length > 0) {
+		const endX = e.changedTouches[0].clientX;
+		const endY = e.changedTouches[0].clientY;
+		const deltaX = endX - startX;
+		const deltaY = endY - startY;
+		
+		debugLog(`touchend: X=${endX}, Y=${endY}, deltaX=${deltaX}, deltaY=${deltaY}`);
+		
+		// Determine thresholds for a "significant" swipe
+		const horizontalSwipeThreshold = window.innerWidth * 0.2; // 20%
+		const verticalSwipeThreshold = window.innerHeight * 0.2; // 20%
+		
+		// 1) Horizontal swipe
+		if (
+		Math.abs(deltaX) > Math.abs(deltaY) &&
+		Math.abs(deltaX) > horizontalSwipeThreshold
+		) {
+		if (deltaX > 0) {
+		debugLog('Detected swipe RIGHT');
+		currentIndex = (currentIndex - 1 + sections.length) % sections.length;
+		navigateToSection(currentIndex);
+		} else {
+		debugLog('Detected swipe LEFT');
+		currentIndex = (currentIndex + 1) % sections.length;
+		navigateToSection(currentIndex);
+		}
+		}
+		// 2) Vertical swipe
+		else if (
+		Math.abs(deltaY) > Math.abs(deltaX) &&
+		Math.abs(deltaY) > verticalSwipeThreshold
+		) {
+		// Upward swipe at bottom => next section
+		if (deltaY < 0 && isScrollAtBottom()) {
+		debugLog('Detected swipe UP at bottom');
+		currentIndex = (currentIndex + 1) % sections.length;
+		navigateToSection(currentIndex);
+		}
+		// Downward swipe at top => previous section
+		else if (deltaY > 0 && isScrollAtTop()) {
+		debugLog('Detected swipe DOWN at top');
+		currentIndex = (currentIndex - 1 + sections.length) % sections.length;
+		navigateToSection(currentIndex);
+		} else {
+		debugLog('Vertical swipe not at top/bottom, ignoring');
+		}
+		} else {
+		debugLog('No significant swipe detected');
+		}
+		}
+		
+		// Reset
+		startX = undefined;
+		startY = undefined;
+		});
+		</script><!-- mnbnbxmbzxmncbzxc -->
+	</head>
+	<body>
+		<div class="site-wrapper">
+			<div class="site-main">
+				<div class="inner">
+					<header id="header">
+						<div id="container13" class="container-component instance-13 default full screen">
+							<div class="wrapper">
+								<div class="inner">
+									<ul id="buttons11" class="buttons-component instance-11 style-10" data-visibility="desktop">
+										<li>
+											<a href="#about" class="n01" role="button">Project B.U.I.L.D.</a>
+										</li><li>
+											<a href="#mentoring" class="n02" role="button">Mentorship Program</a>
+										</li><li>
+											<a href="#financial" class="n03" role="button">Financial Literacy</a>
+										</li><li>
+											<a href="#workforce" class="n04" role="button">Workforce Development</a>
+										</li><li>
+											<a href="#contact" class="n05" role="button">Get In Touch</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div id="container15" class="container-component instance-15 columns full screen" data-visibility="mobile">
+							<div class="wrapper">
+								<div class="inner" data-onvisible-trigger="1">
+									<div>
+										<div id="image10" class="image-component instance-10" data-position="top left">
+											<a href="#home" class="frame"><img src="assets/images/image10.png" alt="" /></a>
+										</div>
+									</div>
+									<div>
+										<ul id="icons04" class="icons-component instance-4 style-2">
+											<li>
+												<a class="n01" href="#openmenu" role="button">
+													<svg aria-labelledby="icons04-icon-1-title"><title id="icons04-icon-1-title">Menu</title><use xlink:href="assets/icons.svg#menu-light"></use></svg>
+													<span class="label">Menu</span>
+												</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</header>
+					<section id="load-section">
+						<div id="container12" class="container-component instance-12 default full screen">
+							<div class="wrapper">
+								<div class="inner" data-onvisible-trigger="1">
+									<div id="image07" class="image-component instance-7">
+										<a href="#home" class="frame"><img src="assets/images/image07.png" alt="" /></a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+					<section id="pbswfl-section" data-title="Home">
+						<div id="container18" class="container-component instance-18 default full screen" data-visibility="desktop">
+							<div class="wrapper">
+								<div class="inner" data-onvisible-trigger="1">
+									<div id="image11" class="image-component instance-11">
+										<a href="#home" class="frame"><img src="assets/images/image11.png" alt="" /></a>
+									</div>
+									<h3 id="text04" class="text-component instance-4 style-10"><span class="p"><sup><strong><mark>B</mark>UILDING</strong> <sup><sub>&amp;</sub></sup> <strong><mark>U</mark>PLIFTING</strong> <strong><mark>I</mark>NDIVIDUALS</strong></sup><br /><sup><sub>THROUGH</sub></sup> <strong><mark>L</mark>EARNING</strong><br /><sup><sub>&amp;</sub></sup> <strong><mark>D</mark>EVELOPMENT</strong></span></h3>
+									<ul id="buttons13" class="buttons-component instance-13 style-6" data-visibility="desktop">
+										<li>
+											<a href="https://www.paypal.com/donate/?hosted_button_id=6W7QRCPFB9BDJ" class="n01" role="button"><svg aria-labelledby="buttons13-icon-1-title"><title id="buttons13-icon-1-title">PayPal</title><use xlink:href="assets/icons.svg#paypal"></use></svg><span class="label">Donate</span></a>
+										</li>
+									</ul>
+									<ul id="links03" class="links-component instance-3">
+										<li class="n01">
+											<a href="#">BECOME A SPONSOR,</a>
+										</li><li class="n02">
+											<a href="#events">DON&#039;T MISS OUR EVENTS!</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div id="container01" class="container-component instance-1 style-4 default full screen" data-visibility="mobile">
+							<div class="wrapper">
+								<div class="inner" data-onvisible-trigger="1">
+									<div id="image01" class="image-component instance-1 style-2">
+										<a href="#pbswfl" class="frame"><img src="assets/images/image01.png" alt="" /></a>
+									</div>
+									<h3 id="text16" class="text-component instance-16"><span class="p"><sup><strong><mark>B</mark>UILDING</strong> <sup><sub>&amp;</sub></sup> <strong><mark>U</mark>PLIFTING</strong> <strong><mark>I</mark>NDIVIDUALS</strong></sup><br /><sup><sub>THROUGH</sub></sup> <strong><mark>L</mark>EARNING</strong><br /><sup><sub>&amp;</sub></sup> <strong><mark>D</mark>EVELOPMENT</strong></span></h3>
+								</div>
+							</div>
+						</div>
+						<div id="container25" class="container-component instance-25 style-4 default full screen" data-visibility="mobile">
+							<div class="wrapper">
+								<div class="inner" data-onvisible-trigger="1">
+									<ul id="buttons05" class="buttons-component instance-5 style-8" data-visibility="mobile">
+										<li>
+											<a href="https://www.paypal.com/donate/?hosted_button_id=6W7QRCPFB9BDJ" class="n01" role="button"><svg aria-labelledby="buttons05-icon-1-title"><title id="buttons05-icon-1-title">PayPal</title><use xlink:href="assets/icons.svg#paypal"></use></svg><span class="label">Donate</span></a>
+										</li>
+									</ul>
+									<ul id="links02" class="links-component instance-2">
+										<li class="n01">
+											<a href="#events">Casino Night 2025</a>
+										</li>
+									</ul>
+									<ul id="buttons14" class="buttons-component instance-14" data-visibility="desktop">
+										<li>
+											<a href="#" class="n01" role="button">space</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</section>
+					<section id="about-section">
+						<div id="container16" data-scroll-id="about" data-scroll-behavior="default" data-scroll-offset="0" data-scroll-speed="3" class="container-component instance-16 default full screen">
+							<div class="wrapper">
+								<div class="inner" data-onvisible-trigger="1">
+									<ul id="buttons10" class="buttons-component instance-10 style-11">
+										<li>
+											<a href="#pbswfl" class="n01" role="button">Project B.U.I.L.D.</a>
+										</li>
+									</ul>
+									<h2 id="text05" class="text-component instance-5 style-2">About Us</h2>
+									<div id="image14" class="image-component instance-14 style-6" data-position="center">
+										<a href="#home" class="frame"><img src="assets/images/image14.jpg" alt="" /></a>
+									</div>
+									<p id="text12" class="text-component instance-12"><span class="p"><span style="color: #3E9C35"><strong>PROJECT B.U.I.L.D.</strong></span><br />is a non-profit organization dedicated to empowering homeless and foster youth to be responsible, productive members of their families and communities. Our mission is to make a positive impact on youths through the efforts of a dedicated mentoring team working in partnership with youth agencies, local communities, and families to educate youth in three key areas of modern life: Mentoring, Financial Literacy, and Workforce.</span></p>
+									<ul id="links01" class="links-component instance-1">
+										<li class="n01">
+											<a href="#partners">Our Partners</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</section>
+					<section id="partners-section">
+						<div id="container02" class="container-component instance-2 style-10 default full screen">
+							<div class="wrapper">
+								<div class="inner" data-onvisible-trigger="1">
+									<ul id="buttons02" class="buttons-component instance-2">
+										<li>
+											<a href="#pbswfl" class="n01" role="button">Project B.U.I.L.D.</a>
+										</li>
+									</ul>
+									<h2 id="text03" class="text-component instance-3">Our Partners</h2>
+									<div id="gallery01" class="gallery-component instance-1 full screen">
+										<div class="inner">
+											<ul>
+												<li>
+													<span class="thumbnail n01"><span class="frame deferred"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxMjAwIDcwMCIgd2lkdGg9IjEyMDAiIGhlaWdodD0iNzAwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjYzRjYWNkIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" data-src="assets/images/gallery01/9e7c5d57.jpg" alt="Untitled" title="Untitled" /></span></span>
+												</li><li>
+													<span class="thumbnail n02"><span class="frame deferred"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxMjAwIDcwMCIgd2lkdGg9IjEyMDAiIGhlaWdodD0iNzAwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjYmFiOGI1IiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" data-src="assets/images/gallery01/8e93a751.jpg" alt="Untitled" title="Untitled" /></span></span>
+												</li><li>
+													<span class="thumbnail n03"><span class="frame deferred"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxMjAwIDcwMCIgd2lkdGg9IjEyMDAiIGhlaWdodD0iNzAwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjYmRiZWMwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" data-src="assets/images/gallery01/e85a6b17.jpg" alt="Untitled" title="Untitled" /></span></span>
+												</li><li>
+													<span class="thumbnail n04"><span class="frame deferred"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxMjAwIDcwMCIgd2lkdGg9IjEyMDAiIGhlaWdodD0iNzAwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjYWRjM2MzIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" data-src="assets/images/gallery01/ba5a8c33.jpg" alt="Untitled" title="Untitled" /></span></span>
+												</li><li>
+													<span class="thumbnail n05"><span class="frame deferred"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxMjAwIDcwMCIgd2lkdGg9IjEyMDAiIGhlaWdodD0iNzAwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjZTJlMGUxIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" data-src="assets/images/gallery01/d265a0ad.jpg" alt="Untitled" title="Untitled" /></span></span>
+												</li><li>
+													<span class="thumbnail n06"><span class="frame deferred"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxMjAwIDcwMCIgd2lkdGg9IjEyMDAiIGhlaWdodD0iNzAwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjN2Q4NGE2IiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" data-src="assets/images/gallery01/4feaa18c.jpg" alt="Untitled" title="Untitled" /></span></span>
+												</li><li>
+													<span class="thumbnail n07"><span class="frame deferred"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxMjAwIDcwMCIgd2lkdGg9IjEyMDAiIGhlaWdodD0iNzAwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjZjRjZGM4IiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" data-src="assets/images/gallery01/6e0faa86.jpg" alt="Untitled" title="Untitled" /></span></span>
+												</li><li>
+													<span class="thumbnail n08"><span class="frame deferred"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxMjAwIDcwMCIgd2lkdGg9IjEyMDAiIGhlaWdodD0iNzAwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjZDlkMWQ0IiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" data-src="assets/images/gallery01/15c524f5.jpg" alt="Untitled" title="Untitled" /></span></span>
+												</li><li>
+													<span class="thumbnail n09"><span class="frame deferred"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxMjAwIDcwMCIgd2lkdGg9IjEyMDAiIGhlaWdodD0iNzAwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjZDNjYWNhIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" data-src="assets/images/gallery01/00a339b4.jpg" alt="Untitled" title="Untitled" /></span></span>
+												</li><li>
+													<span class="thumbnail n10"><span class="frame deferred"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxMjAwIDcwMCIgd2lkdGg9IjEyMDAiIGhlaWdodD0iNzAwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjYzBjMmMzIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" data-src="assets/images/gallery01/a2b19f04.jpg" alt="Untitled" title="Untitled" /></span></span>
+												</li><li>
+													<span class="thumbnail n11"><span class="frame deferred"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxMjAwIDcwMCIgd2lkdGg9IjEyMDAiIGhlaWdodD0iNzAwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSJ0cmFuc3BhcmVudCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIvPjwvc3ZnPg%3D%3D" data-src="assets/images/gallery01/7426e6f9.png" alt="Untitled" title="Untitled" /></span></span>
+												</li><li>
+													<span class="thumbnail n12"><span class="frame deferred"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxMjAwIDcwMCIgd2lkdGg9IjEyMDAiIGhlaWdodD0iNzAwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjYjdiNWI2IiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" data-src="assets/images/gallery01/9efce6d2.jpg" alt="Untitled" title="Untitled" /></span></span>
+												</li><li>
+													<span class="thumbnail n13"><span class="frame deferred"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxMjAwIDcwMCIgd2lkdGg9IjEyMDAiIGhlaWdodD0iNzAwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSJ0cmFuc3BhcmVudCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIvPjwvc3ZnPg%3D%3D" data-src="assets/images/gallery01/22dd676c.png" alt="Untitled" title="Untitled" /></span></span>
+												</li><li>
+													<span class="thumbnail n14"><span class="frame deferred"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxMjAwIDcwMCIgd2lkdGg9IjEyMDAiIGhlaWdodD0iNzAwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjZTBlNGU3IiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" data-src="assets/images/gallery01/da4d7736.jpg" alt="Untitled" title="Untitled" /></span></span>
+												</li><li>
+													<span class="thumbnail n15"><span class="frame deferred"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxMjAwIDcwMCIgd2lkdGg9IjEyMDAiIGhlaWdodD0iNzAwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjZTVlN2U0IiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" data-src="assets/images/gallery01/73ee8f6d.jpg" alt="Untitled" title="Untitled" /></span></span>
+												</li><li>
+													<span class="thumbnail n16"><span class="frame deferred"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxMjAwIDcwMCIgd2lkdGg9IjEyMDAiIGhlaWdodD0iNzAwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSJ0cmFuc3BhcmVudCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIvPjwvc3ZnPg%3D%3D" data-src="assets/images/gallery01/b8f635d4.png" alt="Untitled" title="Untitled" /></span></span>
+												</li><li>
+													<span class="thumbnail n17"><span class="frame deferred"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxMjAwIDcwMCIgd2lkdGg9IjEyMDAiIGhlaWdodD0iNzAwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjN2E3NDdlIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" data-src="assets/images/gallery01/94a56314.jpg" alt="Untitled" title="Untitled" /></span></span>
+												</li><li>
+													<span class="thumbnail n18"><span class="frame deferred"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxMjAwIDcwMCIgd2lkdGg9IjEyMDAiIGhlaWdodD0iNzAwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjZWZlN2U2IiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" data-src="assets/images/gallery01/45f10e2b.jpg" alt="Untitled" title="Untitled" /></span></span>
+												</li><li>
+													<span class="thumbnail n19"><span class="frame deferred"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxMjAwIDcwMCIgd2lkdGg9IjEyMDAiIGhlaWdodD0iNzAwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjY2FkMmNiIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" data-src="assets/images/gallery01/4a2498e6.jpg" alt="Untitled" title="Untitled" /></span></span>
+												</li><li>
+													<span class="thumbnail n20"><span class="frame"><img src="assets/images/gallery01/a4baee10.jpg" alt="Untitled" title="Untitled" /></span></span>
+												</li><li>
+													<span class="thumbnail n21"><span class="frame deferred"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxMjAwIDcwMCIgd2lkdGg9IjEyMDAiIGhlaWdodD0iNzAwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjMjY4NWJhIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" data-src="assets/images/gallery01/f9d60d90.jpg" alt="Untitled" title="Untitled" /></span></span>
+												</li><li>
+													<span class="thumbnail n22"><span class="frame deferred"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxMjAwIDcwMCIgd2lkdGg9IjEyMDAiIGhlaWdodD0iNzAwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSJ0cmFuc3BhcmVudCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIvPjwvc3ZnPg%3D%3D" data-src="assets/images/gallery01/80c2ce67.png" alt="Untitled" title="Untitled" /></span></span>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+					<section id="mentoring-section">
+						<div id="container09" data-scroll-id="mentoring" data-scroll-behavior="default" data-scroll-offset="0" data-scroll-speed="3" class="container-component instance-9 style-1 default full screen">
+							<div class="wrapper">
+								<div class="inner" data-onvisible-trigger="1">
+									<ul id="buttons03" class="buttons-component instance-3 style-11">
+										<li>
+											<a href="#pbswfl" class="n01" role="button">Project B.U.I.L.D.</a>
+										</li>
+									</ul>
+									<h2 id="text01" class="text-component instance-1 style-2">Mentoring</h2>
+									<div id="image04" class="image-component instance-4 style-6" data-position="center">
+										<span class="frame deferred"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAyNDU3IDE4NDMiIHdpZHRoPSIyNDU3IiBoZWlnaHQ9IjE4NDMiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxyZWN0IGZpbGw9IiM0NTNlMzciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiLz48L3N2Zz4%3D" data-src="assets/images/image04.jpg" alt="" /></span>
+									</div>
+									<p id="text15" class="text-component instance-15 style-12"><span class="p">At <span style="color: #3E9C35"><strong>PROJECT B.U.I.L.D.</strong></span><br />we utilize a unique mentoring approach to guide youth and young adults. This program helps participants identify personal challenges or deficiencies, facilitate and lead group discussions on specific topics, develop self-awareness, and address life issues they are facing. Our mentoring approach is essential because it enables participants to self-identify areas for improvement, fostering a sustainable and holistic path towards success. By building the right mindset and confidence, this approach better prepares them to complete our Workforce Development program and thrive in adulthood.</span></p>
+								</div>
+							</div>
+						</div>
+					</section>
+					<section id="financial-section">
+						<div id="container20" data-scroll-id="financial" data-scroll-behavior="default" data-scroll-offset="0" data-scroll-speed="3" class="container-component instance-20 default full screen">
+							<div class="wrapper">
+								<div class="inner" data-onvisible-trigger="1">
+									<ul id="buttons16" class="buttons-component instance-16">
+										<li>
+											<a href="#pbswfl" class="n01" role="button">Project B.U.I.L.D.</a>
+										</li>
+									</ul>
+									<h2 id="text35" class="text-component instance-35 style-2">Financial Literacy</h2>
+									<div id="image02" class="image-component instance-2 style-7" data-visibility="desktop" data-position="center">
+										<span class="frame deferred"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAyNTI3IDIwMTgiIHdpZHRoPSIyNTI3IiBoZWlnaHQ9IjIwMTgiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxyZWN0IGZpbGw9IiM2ZDY5NWYiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiLz48L3N2Zz4%3D" data-src="assets/images/image02.jpg" alt="" /></span>
+									</div>
+									<div id="image09" class="image-component instance-9 style-8" data-visibility="mobile" data-position="center">
+										<span class="frame deferred"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAyNDAyIDIwNTkiIHdpZHRoPSIyNDAyIiBoZWlnaHQ9IjIwNTkiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxyZWN0IGZpbGw9IiM2NzY1NWIiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiLz48L3N2Zz4%3D" data-src="assets/images/image09.jpg" alt="" /></span>
+									</div>
+									<p id="text36" class="text-component instance-36 style-12"><span class="p">Our <span style="color: #3E9C35"><strong>Financial Literacy</strong></span><br />program focuses on partnering with local banks and inviting guest speakers to engage with our youth. This section includes weekly classes and one-on-one meetings to provide personalized guidance.</span><span class="p"><span style="color: #3E9C35"><strong>Financial Literacy</strong></span> is a critical component of our program, as it prepares participants to manage their finances effectively once they secure employment. Through this program, we aim to equip them with the skills and knowledge needed to budget wisely, spend responsibly, and plan for their future.</span></p>
+								</div>
+							</div>
+						</div>
+						<div id="container26" class="container-component instance-26 default full screen">
+							<div class="wrapper">
+								<div class="inner" data-onvisible-trigger="1">
+									<p id="text37" class="text-component instance-37">The curriculum covers<span style="color: #3E9C35"><strong>:</strong></span></p>
+								</div>
+							</div>
+						</div>
+						<div id="container10" class="container-component instance-10 default full screen">
+							<div class="wrapper">
+								<div class="inner" data-onvisible-trigger="1">
+									<div id="list03" class="list-component instance-3 style-2">
+										<ul>
+											<li>
+												<p>Budgeting and financial planning.</p>
+											</li><li>
+												<p>Understanding and building credit.</p>
+											</li><li>
+												<p>Learning about stocks and investments.</p>
+											</li><li>
+												<p>Real-life scenario-based activities.</p>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+					<section id="workforce-section">
+						<div id="container03" data-scroll-id="workforce" data-scroll-behavior="default" data-scroll-offset="0" data-scroll-speed="3" class="container-component instance-3 default full screen">
+							<div class="wrapper">
+								<div class="inner" data-onvisible-trigger="1">
+									<ul id="buttons09" class="buttons-component instance-9 style-11">
+										<li>
+											<a href="#pbswfl" class="n01" role="button">Project B.U.I.L.D.</a>
+										</li>
+									</ul>
+									<h2 id="text08" class="text-component instance-8 style-2">Workforce Development</h2>
+									<div id="image13" class="image-component instance-13 style-7" data-visibility="desktop" data-position="center">
+										<span class="frame deferred"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxOTIwIDI1NjAiIHdpZHRoPSIxOTIwIiBoZWlnaHQ9IjI1NjAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxyZWN0IGZpbGw9IiM0ZTUyNGIiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiLz48L3N2Zz4%3D" data-src="assets/images/image13.jpg" alt="" /></span>
+									</div>
+									<div id="image03" class="image-component instance-3 style-7" data-visibility="mobile" data-position="center">
+										<span class="frame deferred"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAyNTYwIDE1MDMiIHdpZHRoPSIyNTYwIiBoZWlnaHQ9IjE1MDMiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxyZWN0IGZpbGw9IiMzODMxMmEiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiLz48L3N2Zz4%3D" data-src="assets/images/image03.jpg" alt="" /></span>
+									</div>
+									<p id="text07" class="text-component instance-7 style-12"><span class="p">Our <span style="color: #3E9C35"><strong>Workforce Development</strong></span><br />Program includes comprehensive training and support to prepare youth and young adults for successful careers in the construction industry.</span></p>
+								</div>
+							</div>
+						</div>
+						<div id="container07" class="container-component instance-7 columns full screen">
+							<div class="wrapper">
+								<div class="inner">
+									<div>
+										<p id="text34" class="text-component instance-34 style-11">Training Programs<span style="color: #3E9C35"><strong>:</strong></span></p>
+										<div id="list05" class="list-component instance-5 style-1">
+											<ul>
+												<li>
+													<p>Forklift certification</p>
+												</li><li>
+													<p>OSHA 10</p>
+												</li><li>
+													<p>CPR and First Aid</p>
+												</li><li>
+													<p>CORE <sup><sub>(introduction to construction)</sub></sup></p>
+												</li><li>
+													<p>Plumbing</p>
+												</li><li>
+													<p>Drywall</p>
+												</li><li>
+													<p>Carpentry</p>
+												</li><li>
+													<p>BUSINESS OF RETAIL</p>
+												</li><li>
+													<p>RETAIL INDUSTRY FUNDAMENTALS</p>
+												</li><li>
+													<p>CUSTOMER SERVICE &amp; SALES</p>
+												</li><li>
+													<p>CUSTOMER CONFLICT DE-ESCALATION</p>
+												</li><li>
+													<p>SUPPLY CHAIN, INVENTORY &amp; LOGISTICS</p>
+												</li>
+											</ul>
+										</div>
+									</div>
+									<div>
+										<p id="text23" class="text-component instance-23 style-11">Career Readiness<span style="color: #3E9C35"><strong>:</strong></span></p>
+										<div id="list08" class="list-component instance-8 style-1">
+											<ul>
+												<li>
+													<p>Mock interviews</p>
+												</li><li>
+													<p>Resume building</p>
+												</li><li>
+													<p>Job placement assistance</p>
+												</li><li>
+													<p><sub>We also incorporate real-life situations shared by our participants, helping them create actionable plans.</sub></p>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div id="container14" class="container-component instance-14 default full screen">
+							<div class="wrapper">
+								<div class="inner">
+									<h1 id="text09" class="text-component instance-9"><span class="p">Importance of<br />Workforce Development<span style="color: #3E9C35"><strong>:</strong></span></span></h1>
+									<p id="text13" class="text-component instance-13"><span class="p"><span style="color: #3E9C35"><strong>Addressing the Aging Workforce:</strong></span><br />The construction sector is experiencing a significant aging of its workforce. Between 2003 and 2020, the percentage of construction workers aged 55 and over nearly doubled, rising from 11.5% to 22.7%. This trend indicates a growing number of impending retirements, underscoring the need to cultivate a younger workforce to fill the emerging gaps.</span><span class="p"><span style="color: #3E9C35"><strong>Underrepresentation of Youth:</strong></span><br />In 2020, individuals aged 16 to 24 comprised only 9.4% of the construction workforce, compared to 11.6% across all industries. This underrepresentation highlights the necessity of engaging more young people in construction roles to ensure a balanced and sustainable workforce.</span><span class="p"><span style="color: #3E9C35"><strong>Enhancing Diversity and Inclusion:</strong></span><br />Certain demographics, such as women and opportunity youth (those aged 16-24 who are not in school or employed), are significantly underrepresented in construction. Women constitute about 11% of the construction industry overall and roughly 4% of those in construction occupations. Opportunity youth number over 5 million in the U.S., yet the average age of a new apprentice is 29, suggesting limited access for younger individuals. Targeted workforce development can help integrate these groups, promoting diversity and inclusion within the industry.</span><span class="p"><span style="color: #3E9C35"><strong>Mitigating Youth Unemployment:</strong></span><br />Youth employment rates have declined over the years, with the labor force participation rate for 16- to 19-year-olds dropping from 52.0% in 2000 to 34.1% in 2011, and remaining low since. Providing training and employment opportunities in construction can help reduce youth unemployment and offer viable career paths.</span><span class="p"><span style="color: #3E9C35"><strong>Building a Skilled Workforce:</strong></span><br />The construction industry faces a significant skills gap, with projections indicating a need for an additional 152,000 workers to meet housing targets. Investing in youth workforce development ensures a pipeline of skilled workers ready to meet industry demands and support economic growth. In summary, investing in workforce development for youth in construction is essential to address the aging workforce, enhance diversity, reduce unemployment, build a skilled labor pool, and promote economic mobility among young individuals.</span></p>
+								</div>
+							</div>
+						</div>
+					</section>
+					<section id="contact-section">
+						<div id="container11" class="container-component instance-11 default full screen">
+							<div class="wrapper">
+								<div class="inner">
+									<ul id="buttons08" class="buttons-component instance-8 style-10" data-visibility="desktop">
+										<li>
+											<a href="#about" class="n01" role="button">Project B.U.I.L.D.</a>
+										</li><li>
+											<a href="#mentoring" class="n02" role="button">Mentorship Program</a>
+										</li><li>
+											<a href="#financial" class="n03" role="button">Financial Literacy</a>
+										</li><li>
+											<a href="#workforce" class="n04" role="button">Workforce Development</a>
+										</li><li>
+											<a href="#contact" class="n05" role="button">Get In Touch</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div id="container22" class="container-component instance-22 columns full screen" data-visibility="mobile">
+							<div class="wrapper">
+								<div class="inner" data-onvisible-trigger="1">
+									<div>
+										<div id="image17" class="image-component instance-17" data-position="top left">
+											<a href="#home" class="frame"><img src="assets/images/image17.png" alt="" /></a>
+										</div>
+									</div>
+									<div>
+										<ul id="icons03" class="icons-component instance-3 style-2">
+											<li>
+												<a class="n01" href="#openmenu" role="button">
+													<svg aria-labelledby="icons03-icon-1-title"><title id="icons03-icon-1-title">Menu</title><use xlink:href="assets/icons.svg#menu-light"></use></svg>
+													<span class="label">Menu</span>
+												</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div id="container08" data-scroll-id="contact" data-scroll-behavior="default" data-scroll-offset="0" data-scroll-speed="3" class="container-component instance-8 style-6 default full screen">
+							<div class="wrapper">
+								<div class="inner">
+									<ul id="buttons07" class="buttons-component instance-7 style-11">
+										<li>
+											<a href="#pbswfl" class="n01" role="button">Project B.U.I.L.D.</a>
+										</li>
+									</ul>
+									<h2 id="text11" class="text-component instance-11">Contact Us</h2>
+									<form id="form02" method="post" action="#" class="form-component instance-2">
+										<div class="inner">
+											<div class="field">
+											<label for="form02-name">Name</label>			<input type="text" name="name" id="form02-name" placeholder="" maxlength="128" required />
+											</div>
+											<div class="field">
+											<label for="form02-email">Email</label>			<input type="email" name="email" id="form02-email" placeholder="" maxlength="128" required />
+											</div>
+											<div class="field">
+											<label for="form02-message">Message</label>			<textarea data-gramm_editor="false" name="message" id="form02-message" placeholder="" maxlength="16384" required></textarea>
+											</div>
+											<div class="actions">
+												<button type="submit">Send Message</button>
+											</div>
+										</div>
+										<input type="hidden" name="id" value="form02" />
+									</form>
+								</div>
+							</div>
+						</div>
+					</section>
+					<section id="contact-done-section">
+						<div id="container04" class="container-component instance-4 style-6 default full screen">
+							<div class="wrapper">
+								<div class="inner">
+									<h2 id="text02" class="text-component instance-2">Thank you</h2>
+									<p id="text10" class="text-component instance-10 style-4">We will be in touch!</p>
+									<ul id="buttons04" class="buttons-component instance-4">
+										<li>
+											<a href="#pbswfl" class="n01" role="button">RETURN</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</section>
+					<section id="openmenu-section">
+						<div id="container27" class="container-component instance-27 default full screen" data-visibility="mobile">
+							<div class="wrapper">
+								<div class="inner" data-onvisible-trigger="1">
+									<ul id="icons01" class="icons-component instance-1">
+										<li>
+											<a class="n01" onclick="history.back();" role="button">
+												<svg aria-labelledby="icons01-icon-1-title"><title id="icons01-icon-1-title">Cancel</title><use xlink:href="assets/icons.svg#cancel-light"></use></svg>
+												<span class="label">Cancel</span>
+											</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div id="container21" class="container-component instance-21 default full screen" data-visibility="mobile">
+							<div class="wrapper">
+								<div class="inner" data-onvisible-trigger="1">
+									<div id="image05" class="image-component instance-5" data-position="top left">
+										<a href="#home" class="frame"><img src="assets/images/image05.png" alt="" /></a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div id="container06" class="container-component instance-6 default full screen" data-visibility="mobile">
+							<div class="wrapper">
+								<div class="inner" data-onvisible-trigger="1">
+									<ul id="buttons01" class="buttons-component instance-1">
+										<li>
+											<a href="#about" class="n01" role="button">About Us 👷🏽</a>
+										</li><li>
+											<a href="#financial" class="n02" role="button">Financial 📖</a>
+										</li><li>
+											<a href="#mentoring" class="n03" role="button">Mentoring 🏫</a>
+										</li><li>
+											<a href="#workforce" class="n04" role="button">Workforce 💪🏾</a>
+										</li><li>
+											<a href="#contact" class="n05" role="button">Get In Touch 💬</a>
+										</li>
+									</ul>
+									<div id="image08" class="image-component instance-8" data-position="top left">
+										<a href="#home" class="frame"><img src="assets/images/image08.png" alt="" /></a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+					<section id="events-section">
+						<div id="container19" class="container-component instance-19 default full screen">
+							<div class="wrapper">
+								<div class="inner">
+									<ul id="buttons12" class="buttons-component instance-12">
+										<li>
+											<a href="#pbswfl" class="n01" role="button">Project B.U.I.L.D.</a>
+										</li>
+									</ul>
+									<h1 id="text32" class="text-component instance-32">Feeling lucky? 🎲</h1>
+									<p id="text22" class="text-component instance-22"><span class="p">Join us for The Ultimate Casino Night!<br />hosted by PROJECT B.U.I.L.D. SWFL<br />on Saturday, March 8th<br />at the Kapnick Center, Naples, FL</span></p>
+								</div>
+							</div>
+						</div>
+						<div id="container17" class="container-component instance-17 default full screen">
+							<div class="wrapper">
+								<div class="inner">
+									<div id="image15" class="image-component instance-15" data-position="center">
+										<a href="#home" class="frame"><img src="assets/images/image15.jpg" alt="" /></a>
+									</div>
+									<p id="text29" class="text-component instance-29 style-13">📲 Scan the QR code on the flyer to purchase tickets or become a sponsor!</p>
+									<p id="text24" class="text-component instance-24 style-13">This exciting evening is all about fun and impact—supporting Project BUILD SWFL’s Workforce Development Program, which empowers young adults with the skills they need to create brighter futures.</p>
+									<p id="text25" class="text-component instance-25"><span class="p">Here’s what you can look forward to:<br />✨ Casino Games ✨ Appetizers<br />✨ Desserts ✨ Open Bar ✨ Live DJ</span></p>
+									<p id="text27" class="text-component instance-27 style-13">💡 This is your chance to enjoy a memorable night while directly supporting a program that changes lives through education, skills training, and job placement.</p>
+									<p id="text06" class="text-component instance-6">Help us make a difference. Let’s build futures together</p>
+								</div>
+							</div>
+						</div>
+						<div id="container23" class="container-component instance-23 default full screen">
+							<div class="wrapper">
+								<div class="inner">
+									<p id="text26" class="text-component instance-26">Tickets are $125 per person, and sponsorship opportunities are available for businesses or individuals looking to make a bigger impact.</p>
+								</div>
+							</div>
+						</div>
+					</section>
+					<footer id="footer">
+						<div id="container05" class="container-component instance-5 default full screen">
+							<div class="wrapper">
+								<div class="inner">
+									<ul id="icons02" class="icons-component instance-2 style-1">
+										<li>
+											<a class="n01" href="https://www.linkedin.com/company/projectbuildswfl" role="button">
+												<svg aria-labelledby="icons02-icon-1-title"><title id="icons02-icon-1-title">LinkedIn</title><use xlink:href="assets/icons.svg#linkedin"></use></svg>
+												<span class="label">LinkedIn</span>
+											</a>
+										</li><li>
+											<a class="n02" href="https://www.facebook.com/projectbuildswfl" role="button">
+												<svg aria-labelledby="icons02-icon-2-title"><title id="icons02-icon-2-title">Facebook</title><use xlink:href="assets/icons.svg#facebook"></use></svg>
+												<span class="label">Facebook</span>
+											</a>
+										</li><li>
+											<a class="n03" href="mailto:aram@projectbuildswfl.org" role="button">
+												<svg aria-labelledby="icons02-icon-3-title"><title id="icons02-icon-3-title">Email</title><use xlink:href="assets/icons.svg#email"></use></svg>
+												<span class="label">Email</span>
+											</a>
+										</li><li>
+											<a class="n04" href="tel:+12398980608" role="button">
+												<svg aria-labelledby="icons02-icon-4-title"><title id="icons02-icon-4-title">Mobile</title><use xlink:href="assets/icons.svg#mobile"></use></svg>
+												<span class="label">Mobile</span>
+											</a>
+										</li>
+									</ul>
+									<p id="text21" class="text-component instance-21 style-7"><span class="p">Address: <a href="https://www.google.com/maps/search/?api=1&query=3845+Beck+Boulevard,+Naples,+FL+34114+-+Unit+805">3845 Beck Boulevard, Naples, FL 34114 - Unit 805</a><br />Email: <a href="mailto:aram@projectbuildswfl.org">aram@projectbuildswfl.org</a> | Mobile: <a href="tel:+12398980608">(239) 898-0608</a> | Office: <a href="tel:+12393049638">(239) 304-9638</a></span></p>
+									<h1 id="text14" class="text-component instance-14">&nbsp; © 2025 project build swfl | all rights reserved |&nbsp;designed by xlrdtech.com</h1>
+								</div>
+							</div>
+						</div>
+					</footer>
+				</div>
+			</div>
+		</div>
+		<script src="assets/main.js"></script>
+	</body>
+</html>
